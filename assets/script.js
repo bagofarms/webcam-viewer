@@ -41,7 +41,7 @@ window.onload = (event) => {
         }
     }
 
-    function changeMediaDisplay(event) {
+    function changeMediaDisplay() {
         clearErrorMsg();
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({
