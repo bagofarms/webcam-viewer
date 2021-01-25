@@ -8,9 +8,23 @@ This is a simple application that lets you view the feed from any webcam, virtua
 
 ## Running From Source
 
-I don't have a packaged executable version of this yet, as it's still in early development.  If you would like to run it, please follow these instructions.
+I'm still working on packaging executables for this, so if you would like to run it, please follow these instructions.
 
 1. Install `node` and `npm`
 2. Clone the repository
 3. Navigate to the directory in your terminal, and run `npm install`.
 4. run `npm start`
+
+## Building on Raspberry Pi
+
+Building for the Pi is a little weird, but here's what I've been doing so far:
+
+1. Install 
+   * `yarn`
+   * `ruby`
+   * `ruby-dev`
+   * `fpm`
+   * `electron-builder` 
+2. Run `USE_SYSTEM_FPM=true yarn run electron-builder build --linux deb rpm --arm64 --armv7l`
+
+I still need to figure out some issues it has building two of the four packages.
