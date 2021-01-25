@@ -1,12 +1,17 @@
 window.onload = (event) => {
     var video = document.getElementById('video');
     var errorDiv = document.getElementById('error');
+    var mediaSelector = document.getElementById('media');
 
     function errorMsg(msg, error) {
         errorDiv.innerHTML += '<p>' + msg + '</p>';
         if (typeof error !== 'undefined') {
             console.error(error);
         }
+    }
+
+    function clearErrorMsg() {
+        errorDiv.innerHTML = '';
     }
 
     function catchConstraintsError(error) {
@@ -22,34 +27,39 @@ window.onload = (event) => {
     }
 
     function refreshMediaList() {
-        navigator.mediaDevices.getUserMedia({
-            video: true
-        }).then(function(stream) {
-            var videoTracks = stream.getVideoTracks();
-            console.log("Using video device: "+videoTracks[0].label);
-            
-        }).catch(catchConstraintsError);
-    }
-
-    // Get access to the camera!
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.enumerateDevices().then(function(mediaDevices) {
-            mediaDevices.forEach(function(device) {
-                console.log(device.kind + ": " + device.label + " id=" + device.deviceId);
+        if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+            navigator.mediaDevices.enumerateDevices().then(function(mediaDevices) {
+                mediaDevices.forEach(function(device) {
+                    console.log(device.kind + ": " + device.label + " id=" + device.deviceId);
+                    if (device.kind === "videoinput") {
+                        let option = document.createElement("option");
+                        option.text = device.label;
+                        option.value = device.deviceId;
+                        mediaSelector.add(option);
+                    }
+                });
             });
-        });
-        //console.log(devices);
-
-        navigator.mediaDevices.getUserMedia({
-            video: true
-        }).then(function(stream) {
-            var videoTracks = stream.getVideoTracks();
-            console.log("Using video device: "+videoTracks[0].label);
-            stream.onremovetrack = function() {
-                console.log('Stream ended');
-            };
-            window.stream = stream;
-            video.srcObject = stream;
-        }).catch(catchConstraintsError);
+        }
     }
+
+    function changeMediaDisplay(event) {
+        clearErrorMsg();
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({
+                video: {deviceId: mediaSelector.value}
+            }).then(function(stream) {
+                var videoTracks = stream.getVideoTracks();
+                console.log("Using video device: "+videoTracks[0].label);
+                stream.onremovetrack = function() {
+                    console.log('Stream ended');
+                };
+                window.stream = stream;
+                video.srcObject = stream;
+            }).catch(catchConstraintsError);
+        }
+    }
+
+    refreshMediaList();
+    changeMediaDisplay();
+    mediaSelector.onchange = changeMediaDisplay;
 }
