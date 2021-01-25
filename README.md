@@ -1,6 +1,7 @@
 # Webcam Viewer
 
 This is a simple application that lets you view the feed from any webcam, virtual webcam, or video capture device that presents as a webcam on your system.  You could use this for:
+
 * Testing your webcam before a meeting
 * Checking your hair
 * Controlling a Raspberry Pi connected through a cheap HDMI capture device

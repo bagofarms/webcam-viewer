@@ -30,7 +30,6 @@ window.onload = (event) => {
         if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
             navigator.mediaDevices.enumerateDevices().then(function(mediaDevices) {
                 mediaDevices.forEach(function(device) {
-                    console.log(device.kind + ": " + device.label + " id=" + device.deviceId);
                     if (device.kind === "videoinput") {
                         let option = document.createElement("option");
                         option.text = device.label;
