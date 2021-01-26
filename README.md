@@ -16,6 +16,17 @@ I'm still working on packaging executables for this, so if you would like to run
 4. Navigate to the directory in your terminal, and run `yarn install`.
 5. run `yarn run start`
 
+## Building on Windows or MacOS
+
+Run `yarn run make`
+
+## Building on Linux x64
+
+1. Install `rpm`
+   * On Ubuntu, run `sudo apt install rpm`
+   * on Arch Linux, run `sudo pacman -S rpm-tools`
+2. Run `yarn run make`
+
 ## Building on Raspberry Pi
 
 Building for the Pi is a little weird, but here's what I've been doing so far:
@@ -27,8 +38,6 @@ Building for the Pi is a little weird, but here's what I've been doing so far:
    * `electron-builder` 
 2. Run `USE_SYSTEM_FPM=true yarn run electron-builder build --linux deb rpm --arm64 --armv7l`
 
-I still need to figure out some issues it has building two of the four packages.
+The above does not successfully build an rpm, but you may be able to run `sudo apt install rpm`, then build again.
 
-## Building on Windows or MacOS
 
-Run `yarn run make`.
