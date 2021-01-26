@@ -12,9 +12,9 @@ I'm still working on packaging executables for this, so if you would like to run
 
 1. Install `node`
 2. Install `yarn` by running `npm install --global yarn`
-2. Clone the repository
-3. Navigate to the directory in your terminal, and run `yarn install`.
-4. run `yarn run start`
+3. Clone the repository
+4. Navigate to the directory in your terminal, and run `yarn install`.
+5. run `yarn run start`
 
 ## Building on Raspberry Pi
 
@@ -28,3 +28,7 @@ Building for the Pi is a little weird, but here's what I've been doing so far:
 2. Run `USE_SYSTEM_FPM=true yarn run electron-builder build --linux deb rpm --arm64 --armv7l`
 
 I still need to figure out some issues it has building two of the four packages.
+
+## Building on Windows or MacOS
+
+Run `yarn run make`.
