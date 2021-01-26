@@ -10,17 +10,17 @@ This is a simple application that lets you view the feed from any webcam, virtua
 
 I'm still working on packaging executables for this, so if you would like to run it, please follow these instructions.
 
-1. Install `node` and `npm`
+1. Install `node`
+2. Install `yarn` by running `npm install --global yarn`
 2. Clone the repository
-3. Navigate to the directory in your terminal, and run `npm install`.
-4. run `npm start`
+3. Navigate to the directory in your terminal, and run `yarn install`.
+4. run `yarn run start`
 
 ## Building on Raspberry Pi
 
 Building for the Pi is a little weird, but here's what I've been doing so far:
 
 1. Install 
-   * `yarn`
    * `ruby`
    * `ruby-dev`
    * `fpm`
